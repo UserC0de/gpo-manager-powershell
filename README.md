@@ -1,43 +1,36 @@
-Gestor de GPOs en PowerShell
-Gestor interactivo para administrar Group Policy Objects (GPO) en entornos Windows: listar, buscar, respaldar, generar reportes de enlaces (HTML/XML) y eliminar con confirmación y buenas prácticas de ejecución segura en PowerShell.
+# Gestor de GPOs en PowerShell
 
-Características
-Menú interactivo: listar todas las GPOs, buscar por nombre parcial y ver enlaces activos por GPO o globalmente.
+Gestor interactivo para administrar Group Policy Objects (GPO) en Windows: listar, buscar, respaldar, generar reportes de enlaces (HTML/XML) y eliminar con confirmación, siguiendo buenas prácticas de ejecución segura en PowerShell.
 
-Backups: por GPO o de todas, con carpeta por ejecución y reporte XML adjunto para trazabilidad de enlaces/SOM.
+## ✨ Características
 
-Eliminación segura: confirmación explícita, opción de backup previo y uso de -Confirm al borrar.
+- Menú interactivo:
+  - Listar todas las GPOs y sus GUIDs.
+  - Buscar por nombre parcial.
+  - Ver enlaces de una GPO (SOMPath) y abrir reporte HTML.
+  - Ver resumen de enlaces de todas las GPOs.
+  - Backup de una GPO o de todas (con reporte XML por GPO).
+  - Eliminar GPO con confirmación y backup previo opcional.
+  - Eliminar GPOs sin enlaces.
 
-Robustez: Set-StrictMode y errores terminantes para detectar fallos tempranamente y endurecer el script.
+- Robustez:
+  - `Set-StrictMode` y errores terminantes.
+  - Saneado de nombres en rutas de backup.
+  - Reporte XML junto al backup para trazabilidad de enlaces.
 
-Requisitos
-Windows con RSAT/GPMC instalado (módulo GroupPolicy) y permisos sobre AD/GPOs.
+## 🧰 Requisitos
 
-PowerShell con capacidad para ejecutar scripts locales según tu política de ejecución.
+- Windows con RSAT/GPMC instalado (módulo `GroupPolicy`).
+- Permisos adecuados sobre el dominio/OU/GPOs.
+- PowerShell con permisos para ejecutar scripts locales.
 
-Instalación
-Clonar o descargar este repositorio desde GitHub a una carpeta local de trabajo.
+## 🚀 Instalación
 
-Abrir PowerShell con un usuario que tenga permisos suficientes sobre las GPOs del dominio.
+1. Clona o descarga este repositorio.
+2. Abre PowerShell con una cuenta con permisos sobre GPOs.
+3. (Opcional) Ajusta la ExecutionPolicy según la política de tu organización.
 
-Uso
-Ejecutar el script en la carpeta del repositorio: .\Gestor-GPO.ps1.
+## ▶️ Uso
 
-Opciones del menú:
+Ejecuta el script desde la carpeta del repositorio:
 
-Ver todas las GPOs y sus GUIDs.
-
-Ver enlaces de una GPO: muestra SOMPath en consola y genera un HTML en el escritorio.
-
-Hacer backup de una GPO o de todas, guardando también un reporte XML.
-
-Eliminar GPO (con confirmación y backup opcional) o eliminar todas las GPOs sin enlaces.
-
-Consejo: los informes HTML/XML no deben subirse al repositorio; mantén los backups fuera de control de versiones.
-
-Seguridad y buenas prácticas
-Activa Set-StrictMode y usa errores terminantes para evitar estados silenciosos y variables no inicializadas.
-
-No subas artefactos de entorno o backups reales; usa .gitignore para excluir C:\BackupGPOs/ y reportes.
-
-Protege credenciales de GitHub con 2FA y PAT si automatizas despliegues o pushes.
